@@ -7,7 +7,7 @@ exports.up = async function (knex) {
       .references("event_id")
       .inTable("events")
       .onDelete("CASCADE");
-      tbl.integer("item_id")
+    tbl.integer("item_id")
       .unsigned()
       .notNullable()
       .references("item_id")
