@@ -1,5 +1,5 @@
 const Users = require("./auth-model");
-const { authSchema, eventSchema, loginSchema } = require("../schemaValidation");
+const { authSchema, loginSchema } = require("../schemaValidation");
 
 const bodyValidation = async (req, res, next) => {
   try {

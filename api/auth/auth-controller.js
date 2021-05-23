@@ -1,6 +1,7 @@
 const bcrypt = require("bcryptjs");
 const Users = require("./auth-model");
 const tokenBuilder = require("./token-builder");
+
 const ROUNDS = process.env.ROUNDS || 8;
 
 const authController = {
