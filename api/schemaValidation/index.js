@@ -22,4 +22,8 @@ const eventSchema = yup.object({
   event_location: yup.string(),
 });
 
-module.exports = { authSchema, eventSchema, loginSchema };
+const itemSchema = yup.object({
+  item_name: yup.string(),
+});
+
+module.exports = { authSchema, eventSchema, loginSchema, itemSchema };
