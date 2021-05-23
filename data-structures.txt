@@ -1,0 +1,25 @@
+getByID =[
+  {
+    event_id:1,
+    event_name: George Grad,
+    event_date: 07/06/20never,
+    event_time: 1AM,
+    event_location: Las Vegas,
+    organizer: Francis,
+    food_items = [
+      {
+        item_name:cake,
+        responsible_for: Daniel
+      },
+      {
+        item_name:chicken,
+        responsible_for: Francis
+      },
+    ],
+    guests = [
+      {username: Francis, confirmation: going},
+      {username: Daniel, confirmation: going}
+    ]
+  },
+]
+ 
