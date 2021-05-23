@@ -1,39 +1,46 @@
-register: {
-username: admin,
-password: password
+```javascript
+register:
+{
+  username: admin,
+  password: password
 }
 
-response: {
-user\_\_id: ,
-username: ,
-password: hashed password,
+response:
+{
+  user_id: ,
+  username: ,
+  password: hashed password,
 }
 
-login: {
-username: ,
-password:
+login:
+{
+  username: ,
+  password:
 }
 
-response: {
-message: 'Welcome Back ${username}',
-token: 'random generated token'
+response:
+{
+  message: 'Welcome Back ${username}',
+  token: 'random generated token'
 }
 
-addEvent: {
-event_name: ,
-event_date: ,
-event_time: ,
-event_location: ,
-user_id: ,
+addEvent:
+{
+  event_name: ,
+  event_date: ,
+  event_time: ,
+  event_location: ,
+  user_id: ,
 }
 
-response: {
-event_id: ,
-event_name: ,
-event_date: ,
-event_time: ,
-event_location: ,
-user_id: ,
+response:
+{
+  event_id: ,
+  event_name: ,
+  event_date: ,
+  event_time: ,
+  event_location: ,
+  user_id: ,
 }
 
 getAll =[
@@ -60,6 +67,7 @@ guests = [
 ]
 },
 ]
+```
 
 #### User register:
 
