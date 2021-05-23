@@ -15,6 +15,5 @@ exports.up = async function (knex) {
 };
 
 exports.down = async function (knex) {
-  await knex.raw('drop extension if exists "uuid-ossp"');
-  return knex.schema.dropTableIfExists("users");
+  await knex.schema.dropTableIfExists("events"); 
 };
