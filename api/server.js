@@ -8,7 +8,7 @@ server.use(helmet());
 server.use(cors());
 
 server.use("/api/auth", require("./auth/auth-router"));
-// server.use("/api/events", require("./events"));
+server.use("/api/events", require("./events/events-router"));
 
 server.use((err, req, res, next /*eslint-disable-line */) => {
   res.status(err.status).json({
