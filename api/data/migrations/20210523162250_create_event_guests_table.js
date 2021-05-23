@@ -1,5 +1,5 @@
-exports.up = async function (knex) {
-  await knex.schema.createTable("event_guests", (tbl) => {
+exports.up = function (knex) {
+  return knex.schema.createTable("event_guests", (tbl) => {
     tbl.increments("event_guests_id");
     tbl.integer("event_id")
       .unsigned()
@@ -16,6 +16,6 @@ exports.up = async function (knex) {
   })
 };
 
-exports.down = async function (knex) {
-  await knex.schema.dropTableIfExists("event_guests"); 
+exports.down = function (knex) {
+  return knex.schema.dropTableIfExists("event_guests"); 
 };
