@@ -69,6 +69,12 @@ Body:                                     |            Response:
 [post]: /api/auth/login
 
 ```javascript
+Body:                                     |            Response:
+{                                         |            {
+  "username": string,                     |              "message": 'Welcome Back ${username}',
+  "password": string,                     |              "token": 'random generated token',
+                                          |              "user_id": uuid,
+}                                         |            }
 login:
 {
   username: ,

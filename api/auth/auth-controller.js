@@ -18,6 +18,7 @@ const authController = {
       res.status(200).json({
         message: `Welcome Back ${req.user.username}!`,
         token,
+        user_id: req.user.user_id,
       });
     } else {
       next({ status: 401, message: "invalid password" });
