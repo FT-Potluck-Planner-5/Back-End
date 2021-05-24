@@ -1,5 +1,7 @@
 const Events = require("./events-model");
 
+// queries for all guests for a single event
+
 const eventsController = {
   async getAll(req, res) {
     res.status(200).json(await Events.getAll());
@@ -15,6 +17,10 @@ const eventsController = {
   async getById(req, res) {
     const event_id = req.params.event_id;
     res.status(200).json(await Events.getById(event_id));
+  },
+  async getEventGuests(req, res) {
+    const event_id = req.params.event_id;
+    res.status(200).json(await Events.getAllEventGuests(event_id));
   },
   async addEvent(req, res) {
     res.status(201).json(await Events.add(req.body));
