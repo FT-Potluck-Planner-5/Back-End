@@ -27,14 +27,16 @@ const getById = (event_id) => {
     .where({ event_id });
 };
 
-const getByUserId = (user_id) => {
+const getByUserId = async (user_id) => {
   // get items and guests in here
   // query to the database
   // getByGuestId -- 
   // all the JS logic to inject items and guests
   // within forloop call getByGuestId - get the items
 
-  return db("events as e")
+  // second query to get all the event_items from specific user
+
+  const events = await db("events as e")
     .select(
       "e.event_date",
       "e.event_id",
@@ -42,17 +44,29 @@ const getByUserId = (user_id) => {
       "e.event_time",
       "e.event_name",
       "u.username as organizer",
-      "ei.item_name as items"
+      // "ei.item_name as items"
     )
-    .join("event_items as ei", "ei.user_id", "e.owner_id")
+    // .join("event_items as ei", "ei.user_id", "e.owner_id")
     .join("users as u", "u.user_id", "e.owner_id")
-    // .options({ nextTables: true })
-    // .then(results => {
-    //   return db("event_items as ei")
-    //   .select();
-    // })
     .where("e.owner_id", user_id);
     // console.log(query);
+    // console.log(query);
+    const items = (event_id) => {
+      return db("event_items as ei")
+        .select(
+          "ei.item_name",
+          "ei.user_id as responsible_for"
+        )
+        .where("ei.event_id", event_id);    
+    };
+
+    for (let event of events) {
+      const itemsList = await items(event.event_id);
+      event.items = await itemsList;
+    }
+
+
+    return events;
   };
   
   const getByGuestId = (user_id) => {
