@@ -53,24 +53,22 @@ guests = [
 
 #### User register:
 
+[post]: /api/auth/register
+
 ```javascript
-[POST]: /api/auth/register
+Body:                                     |            Response:
+{                                         |            {
+  "username": string,                     |              "user_id": 1,
+  "password": string,                     |              "username": "user",
+}                                         |            }
 
-register:
-{
-  username: admin,
-  password: password
-}
+```
 
-response:
-{
-  user_id: ,
-  username: ,
-  password: hashed password,
-}
+#### User login:
 
+[post]: /api/auth/login
 
-[POST]: /api/auth/login
+```javascript
 login:
 {
   username: ,
