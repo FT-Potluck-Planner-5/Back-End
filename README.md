@@ -53,7 +53,7 @@ guests = [
 
 #### User register:
 
-[post]: /api/auth/register
+[post]: `/api/auth/register`
 
 ```javascript
 Body:                                     |            Response:
@@ -66,7 +66,7 @@ Body:                                     |            Response:
 
 #### User login:
 
-[post]: /api/auth/login
+[post]: `/api/auth/login`
 
 ```javascript
 Body:                                     |            Response:
