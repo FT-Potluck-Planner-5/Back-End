@@ -13,7 +13,6 @@ exports.up = function (knex) {
       .unsigned()
       .references("user_id")
       .inTable("users")
-      // .defaultTo("Open")
       .onDelete("CASCADE");
   });
 };

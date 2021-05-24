@@ -68,11 +68,9 @@ Response:
 ```
 
 ```javascript
-[GET]: /api/events/:id
+[GET]: /api/events/:user_id
 
-[GET]: /api/events/user/:user__id
-
-[GET]: /api/events/guests/:user_id
+[GET]: /api/events/guest/:user_id
 
 [PUT]: /api/events/:event_id
 

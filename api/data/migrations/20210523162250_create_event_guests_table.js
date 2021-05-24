@@ -15,7 +15,7 @@ exports.up = async function (knex) {
       .references("user_id")
       .inTable("users")
       .onDelete("CASCADE");
-    tbl.string("response").defaultTo("Has not responded");
+    tbl.string("response").notNullable().defaultTo("Has not responded");
   });
 };
 
