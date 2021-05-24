@@ -1,7 +1,6 @@
 exports.up = async function (knex) {
-  await knex.raw('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"');
+  // await knex.raw('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"');
   return knex.schema.createTable("event_guests", (tbl) => {
-    tbl.increments("event_guests_id");
     tbl
       .integer("event_id")
       .unsigned()
@@ -16,10 +15,11 @@ exports.up = async function (knex) {
       .references("user_id")
       .inTable("users")
       .onDelete("CASCADE");
+    tbl.string("response").defaultTo("Has not responded");
   });
 };
 
 exports.down = async function (knex) {
-  await knex.raw('drop extension if exists "uuid-ossp"');
+  // await knex.raw('drop extension if exists "uuid-ossp"');
   return knex.schema.dropTableIfExists("event_guests");
 };

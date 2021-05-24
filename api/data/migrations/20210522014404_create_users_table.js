@@ -8,10 +8,10 @@ exports.up = async function (knex) {
       .defaultTo(knex.raw("uuid_generate_v4()"));
     tbl.string("username", 128).notNullable().unique();
     tbl.string("password", 128).notNullable();
-  })
+  });
 };
 
 exports.down = async function (knex) {
-  await knex.raw('drop extension if exists "uuid-ossp"');
+  // await knex.raw('drop extension if exists "uuid-ossp"');
   return knex.schema.dropTableIfExists("users");
 };

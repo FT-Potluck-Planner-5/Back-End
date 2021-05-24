@@ -1,6 +1,5 @@
 exports.up = function (knex) {
   return knex.schema.createTable("event_items", (tbl) => {
-    tbl.increments("event_items_id");
     tbl
       .integer("event_id")
       .unsigned()
@@ -8,16 +7,18 @@ exports.up = function (knex) {
       .references("event_id")
       .inTable("events")
       .onDelete("CASCADE");
+    tbl.string("item_name").notNullable();
     tbl
-      .integer("item_id")
+      .uuid("user_id")
       .unsigned()
-      .notNullable()
-      .references("item_id")
-      .inTable("items")
+      .references("user_id")
+      .inTable("users")
+      // .defaultTo("Open")
       .onDelete("CASCADE");
   });
 };
 
-exports.down = function (knex) {
+exports.down = async function (knex) {
+  // await knex.raw('drop extension if exists "uuid-ossp"');
   return knex.schema.dropTableIfExists("event_items");
 };

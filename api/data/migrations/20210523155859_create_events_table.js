@@ -1,5 +1,5 @@
 exports.up = async function (knex) {
-  await knex.raw('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"');
+  // await knex.raw('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"');
   return knex.schema.createTable("events", (tbl) => {
     tbl.increments("event_id");
     tbl.string("event_name", 128).notNullable().unique();
@@ -17,6 +17,6 @@ exports.up = async function (knex) {
 };
 
 exports.down = async function (knex) {
-  await knex.raw('drop extension if exists "uuid-ossp"');
+  // await knex.raw('drop extension if exists "uuid-ossp"');
   return knex.schema.dropTableIfExists("events");
 };

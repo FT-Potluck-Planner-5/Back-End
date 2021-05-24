@@ -4,11 +4,10 @@ const authSchema = yup.object({
   username: yup
     .string()
     .trim()
-    .min(6, "username must be at least 6 chars")
+    .min(5, "username must be at least 5 chars")
     .max(40, "username is too long")
     .required("username is required"),
   password: yup.string().trim().required("password is required"),
-  role: yup.string().trim().required("role is required"),
 });
 const loginSchema = yup.object({
   username: yup.string().trim().required("username is required"),
