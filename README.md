@@ -1,36 +1,18 @@
 ```javascript
-register:
-{
-  username: admin,
-  password: password
-}
 
-response:
-{
-  user_id: ,
-  username: ,
-  password: hashed password,
-}
-
-login:
-{
-  username: ,
-  password:
-}
-
-response:
-{
-  message: 'Welcome Back ${username}',
-  token: 'random generated token'
-}
 
 addEvent:
 {
-  event_name: ,
-  event_date: ,
-  event_time: ,
-  event_location: ,
+  event_name: 'required',
+  event_date: 'required',
+  event_time: 'required',
+  event_location: 'required',
   user_id: ,
+  items:[
+    {item_name: "first item not required"},
+    {item_name: "second item not required"},
+    {item_name: "third item not required"},
+  ]
 }
 
 response:
@@ -51,7 +33,7 @@ event_date: 07/06/20never,
 event_time: 1AM,
 event_location: Las Vegas,
 organizer: Francis,
-food_items = [
+items = [
 {
 item_name:cake,
 responsible_for: Daniel
@@ -74,7 +56,32 @@ guests = [
 ```javascript
 [POST]: /api/auth/register
 
+register:
+{
+  username: admin,
+  password: password
+}
+
+response:
+{
+  user_id: ,
+  username: ,
+  password: hashed password,
+}
+
+
 [POST]: /api/auth/login
+login:
+{
+  username: ,
+  password:
+}
+
+response:
+{
+  message: 'Welcome Back ${username}',
+  token: 'random generated token'
+}
 ```
 
 ### Events:
