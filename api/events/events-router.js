@@ -3,13 +3,16 @@ const { bodyValidation } = require("./events-middleware");
 
 const router = require("express").Router();
 
+// [GET]: /api/events/:user_id - owner_id? - all events you've organized
+// [GET]: /api/events/guest/:user_id - guest profile?
+// [PUT]: /api/events/:event_id - edit specific event
+// [PUT]: /api/events/guests/:event_id - edit guests in event?
+
 router.get("/", eventsController.getAll);
 
 router.get("/:event_id", eventsController.getById);
 
 router.get("/:event_id/guests", eventsController.getEventGuests);
-
-// router.get("/:event_id/items", eventsController.getById); // new - needed?
 
 router.get("/organizer/:user_id", eventsController.getByOwner);
 

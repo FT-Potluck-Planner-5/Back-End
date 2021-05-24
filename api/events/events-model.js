@@ -1,10 +1,5 @@
 const db = require("../data/db-config");
 
-// [GET]: /api/events/:user_id
-// [GET]: /api/events/guest/:user_id
-// [PUT]: /api/events/:event_id
-// [PUT]: /api/events/guests/:event_id
-
 const getAll = () => {
   return db("events as e")
     .select(
@@ -15,7 +10,7 @@ const getAll = () => {
       "event_name",
       "u.username as organizer"
     )
-    .join("users as u", "u.user_id", "e.user_id");
+    .join("users as u", "u.user_id", "e.owner_id");
 };
 
 const getById = (event_id) => {
@@ -28,28 +23,36 @@ const getById = (event_id) => {
       "event_name",
       "u.username as organizer"
     )
-    .join("users as u", "u.user_id", "e.user_id")
+    .join("users as u", "u.user_id", "e.owner_id")
     .where({ event_id });
 };
 
-// get items and guests in here
 const getByUserId = (user_id) => {
+  // get items and guests in here
   // query to the database
   // getByGuestId -- 
   // all the JS logic to inject items and guests
   // within forloop call getByGuestId - get the items
-  
+
   return db("events as e")
     .select(
-      "event_date",
-      "event_id",
-      "event_location",
-      "event_time",
-      "event_name",
-      "u.username as organizer"
+      "e.event_date",
+      "e.event_id",
+      "e.event_location",
+      "e.event_time",
+      "e.event_name",
+      "u.username as organizer",
+      "ei.item_name as items"
     )
-    .join("users as u", "u.user_id", "e.user_id")
-    .where("e.user_id", user_id);
+    .join("event_items as ei", "ei.user_id", "e.owner_id")
+    .join("users as u", "u.user_id", "e.owner_id")
+    // .options({ nextTables: true })
+    // .then(results => {
+    //   return db("event_items as ei")
+    //   .select();
+    // })
+    .where("e.owner_id", user_id);
+    // console.log(query);
   };
   
   const getByGuestId = (user_id) => {
@@ -63,25 +66,27 @@ const getByUserId = (user_id) => {
         "u.username as guest"
       )
       .join("event_guests as eg", "eg.event_id", "e.event_id")
-      .join("users as u", "u.user_id", "eg.user_id")
-      .where("eg.user_id", user_id);
+      .join("users as u", "u.user_id", "eg.guest_id")
+      .where("eg.guest_id", user_id);
   };
 
-// include RSVP / confirmation column
-// SELECT events.event_id, events.event_name, event_guests.user_id, users.username, event_guests.response FROM events
-// JOIN event_guests ON events.event_id=event_guests.event_id
-// JOIN users ON event_guests.user_id=users.user_id
+// feel like a simple call to get items might be better
+// const getEventItems = (event_id) => {
+
+// };
+
 const getAllEventGuests = (event_id) => {
   return db("events as e")
   .select(
     "e.event_id",
     "e.event_name",
-    "eg.user_id",
+    "eg.guest_id",
     "eg.response",
-    "u.username as guest"
+    "u.username as guest",
+    "ei.item_name"
   )
   .join("event_guests as eg", "eg.event_id", "e.event_id")
-  .join("users as u", "u.user_id", "eg.user_id")
+  .join("users as u", "u.user_id", "eg.guest_id")
   .where("e.event_id", event_id);
 };
 

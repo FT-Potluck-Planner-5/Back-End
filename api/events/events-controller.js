@@ -1,11 +1,10 @@
 const Events = require("./events-model");
 
-// queries for all guests for a single event
-
 const eventsController = {
   async getAll(req, res) {
     res.status(200).json(await Events.getAll());
   },
+  // do we need a constraint here for admin/owner?
   async getByOwner(req, res) {
     const user_id = req.params.user_id;
     res.status(200).json(await Events.getByUserId(user_id));
