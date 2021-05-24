@@ -75,17 +75,7 @@ Body:                                     |            Response:
   "password": string,                     |              "token": 'random generated token',
                                           |              "user_id": uuid,
 }                                         |            }
-login:
-{
-  username: ,
-  password:
-}
 
-response:
-{
-  message: 'Welcome Back ${username}',
-  token: 'random generated token'
-}
 ```
 
 ### Events:
