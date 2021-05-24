@@ -1,16 +1,21 @@
 const eventsController = require("./events-controller");
-const { bodyValidation } = require("./events-middleware");
+const { bodyValidation, restriction, only } = require("./events-middleware");
 
 const router = require("express").Router();
 
-router.get("/", eventsController.getAll);
+router.get("/", restriction, eventsController.getAll);
 
-router.get("/:event_id", eventsController.getById);
+router.get("/:event_id", restriction, eventsController.getById);
 
-router.get("/organizer/:user_id", eventsController.getByOwner);
+router.get(
+  "/organizer/:user_id",
+  restriction,
+  only,
+  eventsController.getByOwner
+);
 
-router.get("/guest/:user_id", eventsController.getByGuest);
+router.get("/guest/:user_id", restriction, eventsController.getByGuest);
 
-router.post("/", bodyValidation, eventsController.addEvent);
+router.post("/", restriction, bodyValidation, eventsController.addEvent);
 
 module.exports = router;

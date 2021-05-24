@@ -1,5 +1,8 @@
 // const Events = require("./events-model");
+const jwt = require("jsonwebtoken");
+
 const { eventSchema } = require("../schemaValidation");
+const JWT_SECRET = require("../secrets");
 
 const bodyValidation = async (req, res, next) => {
   try {
@@ -12,4 +15,23 @@ const bodyValidation = async (req, res, next) => {
   }
 };
 
-module.exports = { bodyValidation };
+const restriction = (req, res, next) => {
+  const token = req.headers.authorization;
+  jwt.verify(token, JWT_SECRET, (err, decoded) => {
+    if (err) {
+      next({ status: 401, message: "Token authentication error" });
+    } else {
+      req.decoded = decoded;
+      console.log(decoded);
+      next();
+    }
+  });
+};
+
+const only = (req, res, next) => {
+  if (req.decoded === req.params.user_id) next();
+  else
+    next({ status: 403, message: "You are not allowed access to this data" });
+};
+
+module.exports = { bodyValidation, restriction, only };
