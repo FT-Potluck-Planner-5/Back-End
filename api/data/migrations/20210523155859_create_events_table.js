@@ -7,7 +7,7 @@ exports.up = async function (knex) {
     tbl.string("event_time", 128).notNullable();
     tbl.string("event_location", 128).notNullable();
     tbl
-      .uuid("user_id")
+      .uuid("owner_id")
       .unsigned()
       .notNullable()
       .references("user_id")
