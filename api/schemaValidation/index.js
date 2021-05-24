@@ -19,6 +19,7 @@ const eventSchema = yup.object({
   event_date: yup.string(),
   event_time: yup.string(),
   event_location: yup.string(),
+  user_id: yup.string(),
 });
 
 const itemSchema = yup.object({
