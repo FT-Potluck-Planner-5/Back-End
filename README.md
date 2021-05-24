@@ -27,7 +27,7 @@ Body:                                     |            Response:
 
 ### Events:
 
-[GET]` /api/events`
+[GET] `/api/events`
 
 ```javascript
 Response:
