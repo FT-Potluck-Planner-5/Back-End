@@ -1,6 +1,6 @@
 ### User register:
 
-[POST]:`/api/auth/register`
+[POST] `/api/auth/register`
 
 ```javascript
 Body:                                     |            Response:
@@ -13,7 +13,7 @@ Body:                                     |            Response:
 
 ### User login:
 
-[POST]: `/api/auth/login`
+[POST] `/api/auth/login`
 
 ```javascript
 Body:                                     |            Response:
@@ -27,7 +27,7 @@ Body:                                     |            Response:
 
 ### Events:
 
-[GET]:` /api/events`
+[GET]` /api/events`
 
 ```javascript
 Response:
