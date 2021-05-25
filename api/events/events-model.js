@@ -118,6 +118,14 @@ const editEvent = async (event_id, changes) => {
   return getById(event_id);
 };
 
+const editResponse = async (event_id, user) => {
+  const { guest_id } = user;
+  await db("event_guests")
+    .where({ event_id, guest_id })
+    .update(user);
+  return guests(event_id);
+};
+
 const items = (event_id) => {
   return db("event_items as ei")
     .select("ei.item_name", "u.username as responsible_for")
@@ -141,5 +149,6 @@ module.exports = {
   getAllEventGuests,
   getByOwnerId,
   addGuest,
-  editEvent
+  editEvent,
+  editResponse
 };

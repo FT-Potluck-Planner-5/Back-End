@@ -29,6 +29,12 @@ const eventsController = {
   },
   async editAnEvent(req, res) {
     res.status(200).json(await Events.editEvent(req.params.event_id, req.body));
+  },
+  async editAResponse(req, res) {
+    res.status(200).json(await Events.editResponse(req.params.event_id, req.body));
+  },
+  async editTheItems(req, res) {
+    res.status(200).json(await Events.editItems(req.params.event_id, req.body));
   }
 };
 
