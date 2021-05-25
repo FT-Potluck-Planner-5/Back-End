@@ -169,29 +169,20 @@ What `response` from database you should be receiving looks like:
 
 [PUT]: /api/events/guests/:event_id
 
+### Add Event:
 
-### What fields your `req.body` should have vs. `response` from database you should be receiving:
+#### `[POST]:{ API_URL }/api/events`
+
+What fields your `req.body` should have vs. `response` from database you should be receiving:
 ```javascript
+{                                         |            {
+  "event_name": string, [required]        |              "message": 'Welcome Back ${username}',
+  "event_date": string, [required]         |              "token": 'random generated token',
+  "event_time": string, [required]        |              "user_id": uuid,
+  "event_location: string, [required]
+  "user_id": 
+}                                         |            }
 
-[POST]: /api/events
-addEvent:
-{
-  "event_name": string,
-  "event_date": string,
-  "event_time": string,
-  "event_location": string,
-  "owner_id": ,
-}
-
-response:
-{
-  "event_id": integer,
-  "event_name": string,
-  "event_date": string,
-  "event_time": string ,
-  "event_location": string ,
-  "owner_id": string,
-}
 ```
 
 ### Items:
