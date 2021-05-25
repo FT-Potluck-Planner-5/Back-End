@@ -7,8 +7,8 @@
 What fields your `req.body` should have vs. `response` from database you should be receiving:
 ```javascript
 {                                         |            {
-  "username": string,                     |              "user_id": 1,
-  "password": string,                     |              "username": "user",
+  "username": string, [required]          |              "user_id": 1,
+  "password": string, [required]          |              "username": "user",
 }                                         |            }
 
 ```
@@ -20,8 +20,8 @@ What fields your `req.body` should have vs. `response` from database you should 
 What fields your `req.body` should have vs. `response` from database you should be receiving:
 ```javascript
 {                                         |            {
-  "username": string,                     |              "message": 'Welcome Back ${username}',
-  "password": string,                     |              "token": 'random generated token',
+  "username": string, [required]          |              "message": 'Welcome Back ${username}',
+  "password": string, [required]          |              "token": 'random generated token',
                                           |              "user_id": uuid,
 }                                         |            }
 
