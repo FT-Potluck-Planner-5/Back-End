@@ -26,7 +26,7 @@ What fields your `req.body` should have vs. `response` from database you should 
 }                                         |            }
 
 ```
-
+# Events
 
 ### All Events (should only appear if registered):
 
