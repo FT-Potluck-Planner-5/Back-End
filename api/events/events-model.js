@@ -18,7 +18,6 @@ const getAll = async () => {
       event.items = itemsList;
       event.guests = guestsList;
     }
-
     return result;
 };
 
@@ -55,14 +54,10 @@ const getById = (event_id) => {
       event.items = itemsList;
       event.guests = guestsList;
     }
-
     return result;
   };
   
 const getByGuestId = async (user_id) => {
-
-  // push itemsList and guestsList for events for non-admin users
-
   const result = await db("events as e")
     .select(
       "event_date",
@@ -75,14 +70,12 @@ const getByGuestId = async (user_id) => {
     .join("event_guests as eg", "eg.event_id", "e.event_id")
     .join("users as u", "u.user_id", "eg.guest_id")
     .where("eg.guest_id", user_id);
-
     for (let event of result) {
       const guestsList = await guests(event.event_id);
       const itemsList = await items(event.event_id);
       event.items = itemsList;
       event.guests = guestsList;
     }
-
     return result;
 };
 
@@ -106,8 +99,18 @@ const getBy = (filter) => {
 };
 
 const add = async (event) => {
+  // add item
+  // add guest / a guest joins an event
   const [{ event_id }] = await db("events").insert(event, ["event_id"]);
   return await getById(event_id);
+};
+
+const addGuest = async (event_id, guest_id) => {
+  // add to event guests table
+  // await db("event_guests").insert(event_id, ["event_id"])
+  // destructure the req.body and pull the ids
+  await db("event_guests").insert({ event_id, guest_id });
+  return guests(event_id);
 };
 
 const items = (event_id) => {
@@ -131,5 +134,6 @@ module.exports = {
   add,
   getByGuestId,
   getAllEventGuests,
-  getByOwnerId
+  getByOwnerId,
+  addGuest
 };

@@ -3,8 +3,6 @@ const { bodyValidation } = require("./events-middleware");
 
 const router = require("express").Router();
 
-// [PUT]: /api/events/:event_id - edit specific event
-// [PUT]: /api/events/guests/:event_id - edit guests in event?
 
 router.get("/", eventsController.getAll);
 
@@ -17,5 +15,23 @@ router.get("/organizer/:user_id", eventsController.getByOwner);
 router.get("/guest/:user_id", eventsController.getByGuest);
 
 router.post("/", bodyValidation, eventsController.addEvent);
+
+router.post("/:event_id/guests", eventsController.addAGuest);
+
+// [PUT]: /api/events/:event_id - edit specific event
+router.put("/:event_id", bodyValidation);
+
+// [PUT]: /api/events/guests/:event_id - edit guests in event? // changing response if you're guest
+router.put("/:event_id/guests", bodyValidation);
+
+// [PUT]: edit items in event
+router.put("/:event_id/items", bodyValidation); // responsibleFor
+
+// [DELETE]: EVENTS /api/events EVENT
+router.delete("/:event_id"); // can combine the logic
+// [DELETE]: ITEMS /api/events/:event_id
+router.delete("/:event_id/items"); // can combine the logic
+// [DELETE]: GUESTS uninvite? GUEST -- middleware to check if restricted to organizer
+router.delete("/:event_id/guests");
 
 module.exports = router;

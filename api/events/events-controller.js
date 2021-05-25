@@ -24,6 +24,9 @@ const eventsController = {
   async addEvent(req, res) {
     res.status(201).json(await Events.add(req.body));
   },
+  async addAGuest(req, res) {
+    res.status(201).json(await Events.addGuest(req.params.event_id, req.body.guest_id));
+  }
 };
 
 module.exports = eventsController;
