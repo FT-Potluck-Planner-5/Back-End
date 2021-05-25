@@ -7,7 +7,7 @@ const eventsController = {
   // do we need a constraint here for admin/owner?
   async getByOwner(req, res) {
     const user_id = req.params.user_id;
-    res.status(200).json(await Events.getByUserId(user_id));
+    res.status(200).json(await Events.getByOwnerId(user_id));
   },
   async getByGuest(req, res) {
     const user_id = req.params.user_id;

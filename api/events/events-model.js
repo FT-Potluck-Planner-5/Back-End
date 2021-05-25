@@ -27,67 +27,46 @@ const getById = (event_id) => {
     .where({ event_id });
 };
 
-const getByUserId = async (user_id) => {
-  // get items and guests in here
-  // query to the database
-  // getByGuestId -- 
-  // all the JS logic to inject items and guests
-  // within forloop call getByGuestId - get the items
-
-  // second query to get all the event_items from specific user
-
-  const events = await db("events as e")
-    .select(
-      "e.event_date",
-      "e.event_id",
-      "e.event_location",
-      "e.event_time",
-      "e.event_name",
-      "u.username as organizer",
-      // "ei.item_name as items"
-    )
-    // .join("event_items as ei", "ei.user_id", "e.owner_id")
-    .join("users as u", "u.user_id", "e.owner_id")
-    .where("e.owner_id", user_id);
-    // console.log(query);
-    // console.log(query);
-    const items = (event_id) => {
-      return db("event_items as ei")
-        .select(
-          "ei.item_name",
-          "ei.user_id as responsible_for"
-        )
-        .where("ei.event_id", event_id);    
-    };
-
-    for (let event of events) {
-      const itemsList = await items(event.event_id);
-      event.items = await itemsList;
-    }
-
-
-    return events;
-  };
-  
-  const getByGuestId = (user_id) => {
-    return db("events as e")
+  const getByOwnerId = async (user_id) => {
+    const result = await db("events as e")
       .select(
         "event_date",
-        "e.event_id",
+        "event_id",
         "event_location",
         "event_time",
         "event_name",
-        "u.username as guest"
+        "u.username as organizer"
       )
-      .join("event_guests as eg", "eg.event_id", "e.event_id")
-      .join("users as u", "u.user_id", "eg.guest_id")
-      .where("eg.guest_id", user_id);
+      .join("users as u", "u.user_id", "e.owner_id")
+      .where("e.owner_id", user_id);
+
+    for (let event of result) {
+      const guestsList = await guests(event.event_id);
+      const itemsList = await items(event.event_id);
+      event.items = itemsList;
+      event.guests = guestsList;
+    }
+
+    return result;
   };
+  
+const getByGuestId = (user_id) => {
 
-// feel like a simple call to get items might be better
-// const getEventItems = (event_id) => {
+  // push itemsList and guestsList for events for non-admin users
 
-// };
+  return db("events as e")
+    .select(
+      "event_date",
+      "e.event_id",
+      "event_location",
+      "event_time",
+      "event_name",
+      "u.username as guest"
+    )
+    .join("event_guests as eg", "eg.event_id", "e.event_id")
+    .join("users as u", "u.user_id", "eg.guest_id")
+    .where("eg.guest_id", user_id);
+};
 
 const getAllEventGuests = (event_id) => {
   return db("events as e")
@@ -113,6 +92,20 @@ const add = async (event) => {
   return await getById(event_id);
 };
 
+const items = (event_id) => {
+  return db("event_items as ei")
+    .select("ei.item_name", "u.username as responsible_for")
+    .leftJoin("users as u", "ei.user_id", "u.user_id")
+    .where("ei.event_id", event_id);
+};
+
+const guests = (event_id) => {
+  return db("event_guests as eg")
+    .select("u.username", "eg.response")
+    .join("users as u", "u.user_id", "eg.guest_id")
+    .where("eg.event_id", event_id);
+};
+
 module.exports = { 
   getAll,
   getById,
@@ -120,5 +113,5 @@ module.exports = {
   add,
   getByGuestId,
   getAllEventGuests,
-  getByUserId
+  getByOwnerId
 };
