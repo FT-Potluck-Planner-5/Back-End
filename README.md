@@ -3,7 +3,7 @@
 [POST] `/api/auth/register`
 
 
-### What fields your `req.body` should have vs. `response` from database you should be receiving:
+##### What fields your `req.body` should have vs. `response` from database you should be receiving:
 ```javascript
 {                                         |            {
   "username": string,                     |              "user_id": 1,
@@ -16,6 +16,7 @@
 
 [POST] `/api/auth/login`
 
+##### What fields your `req.body` should have vs. `response` from database you should be receiving:
 ```javascript
 ###What fields body should have:          |            ###What response you should get back:
 {                                         |            {
