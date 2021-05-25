@@ -50,11 +50,11 @@ const getById = (event_id) => {
     return result;
   };
   
-const getByGuestId = (user_id) => {
+const getByGuestId = async (user_id) => {
 
   // push itemsList and guestsList for events for non-admin users
 
-  return db("events as e")
+  const result = await db("events as e")
     .select(
       "event_date",
       "e.event_id",
@@ -66,6 +66,17 @@ const getByGuestId = (user_id) => {
     .join("event_guests as eg", "eg.event_id", "e.event_id")
     .join("users as u", "u.user_id", "eg.guest_id")
     .where("eg.guest_id", user_id);
+
+    for (let event of result) {
+      const guestsList = await guests(event.event_id);
+      const itemsList = await items(event.event_id);
+      event.items = itemsList;
+      event.guests = guestsList;
+
+      console.log(guestsList, itemsList);
+    }
+
+    return result;
 };
 
 const getAllEventGuests = (event_id) => {
