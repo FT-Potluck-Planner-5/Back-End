@@ -178,7 +178,7 @@ What fields your `req.body` should have vs. `response` from database you should 
   "event_date": string, [required]        |              "event_id": integer,
   "event_time": string, [required]        |              "event_location": string,
   "event_location": string, [required]    |              "event_time": string,
-  "owner_id (user_id)": string [required]           |              "organizer": username
+  "owner_id (user_id)": string [required] |              "organizer": username
 }                                         |            }]
 
 ```
@@ -250,14 +250,10 @@ What fields your `req.body` should have vs. `response` from database you should 
 
 What fields your `req.body` should have vs. `response` from database you should be receiving:
 ```javascript
-{                                         |            {
-  "event_name": string, [required]        |              event_name 
-  "event_date": string, [required]        |              event_data
-  "event_time": string, [required]        |              event_time
-  "event_location": string, [required]    |              event_location
-  "user_id": string [required]            |              user
-}                                         |            }
-
+{                                         |            [{
+  "event_id": integer, [required]         |              "item_name": string,
+  "item_name": string, [required]         |              "responsible_for": username
+}                                         |            }]
 ```
 ### Delete a Guest:
 
@@ -265,12 +261,8 @@ What fields your `req.body` should have vs. `response` from database you should 
 
 What fields your `req.body` should have vs. `response` from database you should be receiving:
 ```javascript
-{                                         |            {
-  "event_name": string, [required]        |              event_name 
-  "event_date": string, [required]        |              event_data
-  "event_time": string, [required]        |              event_time
-  "event_location": string, [required]    |              event_location
-  "user_id": string [required]            |              user
-}                                         |            }
-
+{                                         |            [{
+  "event_id": integer, [required]         |              "item_name": string,
+  "item_name": string, [required]         |              "responsible_for": username
+}                                         |            }]
 ```
