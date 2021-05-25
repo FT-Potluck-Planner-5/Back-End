@@ -69,7 +69,8 @@ What `response` from database you should be receiving looks like (if you are reg
 },
 ]
 ```
-### Single Event:
+### Get Single Event:
+
 #### [GET]: `/api/events/:user_id`
 
 What `response` from database you should be receiving looks like:
