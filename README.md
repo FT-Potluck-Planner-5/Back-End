@@ -18,7 +18,6 @@
 
 ##### What fields your `req.body` should have vs. `response` from database you should be receiving:
 ```javascript
-###What fields body should have:          |            ###What response you should get back:
 {                                         |            {
   "username": string,                     |              "message": 'Welcome Back ${username}',
   "password": string,                     |              "token": 'random generated token',
