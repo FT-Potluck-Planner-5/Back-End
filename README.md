@@ -2,7 +2,7 @@
 
 ### User register:
 
-#### [POST] `/api/auth/register`
+#### POST `/api/auth/register`
 
 What fields your `req.body` should have vs. `response` from database you should be receiving:
 ```javascript
@@ -15,7 +15,7 @@ What fields your `req.body` should have vs. `response` from database you should 
 
 ### User login:
 
-#### [POST] `/api/auth/login`
+#### POST `/api/auth/login`
 
 What fields your `req.body` should have vs. `response` from database you should be receiving:
 ```javascript
@@ -30,7 +30,7 @@ What fields your `req.body` should have vs. `response` from database you should 
 
 ### Get All Events:
 
-#### [GET] `/api/events`
+#### GET `/api/events`
 
 What `response` from database you should be receiving looks like (if you are registered):
 ```javascript
@@ -71,7 +71,7 @@ What `response` from database you should be receiving looks like (if you are reg
 ```
 ### Get Single Event:
 
-#### [GET]: `/api/events/:event_id`
+#### GET`/api/events/:event_id`
 
 What `response` from database you should be receiving looks like:
 ```javascript
