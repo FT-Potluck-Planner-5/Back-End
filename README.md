@@ -15,7 +15,7 @@ What fields your `req.body` should have vs. `response` from database you should 
 
 ### User login:
 
-#### [POST]: `/api/auth/login`
+#### `[POST]:{ API_URL }/api/auth/login`
 
 What fields your `req.body` should have vs. `response` from database you should be receiving:
 ```javascript
@@ -30,7 +30,7 @@ What fields your `req.body` should have vs. `response` from database you should 
 
 ### All Events:
 
-#### [ GET ]: `/api/events`
+#### `{ API_URL }/api/events`
 
 What `response` from database you should be receiving looks like (if you are registered):
 ```javascript
