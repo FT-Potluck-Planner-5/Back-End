@@ -30,8 +30,8 @@
 
 [GET] `/api/events`
 
+##### What `response` from database you should be receiving:
 ```javascript
-Response:
 [
 {
   event_id: integer,
