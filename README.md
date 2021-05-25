@@ -41,9 +41,9 @@ What `response` from database you should be receiving looks like (if you are reg
   event_date: string,
   event_time: string,
   event_location: string,
-  organizer: uuid,
+  organizer: string,
   items = [
-            {item_name:string, responsible_for: username},
+          {item_name:string, responsible_for: username},
           {item_name:string, responsible_for: username},
           ],
   guests = [
