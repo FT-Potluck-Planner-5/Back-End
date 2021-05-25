@@ -29,7 +29,7 @@ const restriction = (req, res, next) => {
 };
 
 const only = (req, res, next) => {
-  if (req.decoded === req.params.user_id) next();
+  if (req.decoded.subject === req.params.user_id) next();
   else
     next({ status: 403, message: "You are not allowed access to this data" });
 };

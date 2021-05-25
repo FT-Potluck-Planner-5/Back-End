@@ -1,6 +1,7 @@
 const express = require("express");
 const helmet = require("helmet");
 const cors = require("cors");
+const { restriction } = require("./events/events-middleware");
 
 const server = express();
 server.use(express.json());
@@ -8,7 +9,7 @@ server.use(helmet());
 server.use(cors());
 
 server.use("/api/auth", require("./auth/auth-router"));
-server.use("/api/events", require("./events/events-router"));
+server.use("/api/events", restriction, require("./events/events-router"));
 server.use("/api/items", require("./items/items-router"));
 
 server.use((err, req, res, next /*eslint-disable-line */) => {
