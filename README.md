@@ -28,7 +28,7 @@ What fields your `req.body` should have vs. `response` from database you should 
 ```
 # Events
 
-### Get All Events:
+### All Events:
 
 #### [GET]: `/api/events`
 
