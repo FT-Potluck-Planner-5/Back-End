@@ -39,6 +39,12 @@ const eventsController = {
 
   async deleteAnEvent(req, res) {
     res.status(202).json(await Events.deleteEvent(req.params.event_id));
+  },
+  async deleteAnItem(req, res) {
+    res.status(202).json(await Events.deleteItem(req.params.event_id, req.body));
+  },
+  async deleteAGuest(req, res) {
+    res.status(202).json(await Events.deleteGuest(req.params.event_id));
   }
 };
 

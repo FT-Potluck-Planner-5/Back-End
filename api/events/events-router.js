@@ -29,7 +29,7 @@ router.put("/:event_id/guests", eventsController.editAResponse);
 // [DELETE]: EVENTS /api/events EVENT
 router.delete("/:event_id", eventsController.deleteAnEvent); // can combine the logic
 // [DELETE]: ITEMS /api/events/:event_id
-router.delete("/:event_id/items"); // can combine the logic
+router.delete("/:event_id/items", eventsController.deleteAnItem); // can combine the logic
 // [DELETE]: GUESTS uninvite? GUEST -- middleware to check if restricted to organizer
 router.delete("/:event_id/guests");
 

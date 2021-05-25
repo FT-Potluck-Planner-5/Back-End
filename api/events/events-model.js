@@ -140,6 +140,18 @@ const deleteEvent = async (event_id) => {
   return deletedEvent;
 };
 
+const deleteItem = async (event_id, item) => {
+  const { item_name } = item;
+  await db("event_items").where({ event_id, item_name }).del();
+  return items(event_id);
+};
+
+const deleteGuest = async (event_id) => {
+  const event = await getById(event_id);
+
+};
+
+
 const items = (event_id) => {
   return db("event_items as ei")
     .select("ei.item_name", "u.username as responsible_for")
@@ -166,5 +178,7 @@ module.exports = {
   editEvent,
   editResponse,
   // editItems, <-- backburner - shame on you
-  deleteEvent
+  deleteEvent,
+  deleteItem,
+  deleteGuest
 };
