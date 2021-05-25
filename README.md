@@ -86,11 +86,25 @@ What `response` from database you should be receiving looks like:
     }
 ]
 ```
-### Get Single Event:
+### Get All Guests Within Event:
 
-#### `[GET]:{ API_URL }/api/events/:event_id`
+#### `[GET]:{ API_URL }/api/events/:event_id/guests`
 
 What `response` from database you should be receiving looks like:
+```javascript
+[
+    {
+        event_name: string,
+        response: string,
+        guest: string
+    },
+    {
+        event_name: string,
+        response: string,
+        guest: string
+    }
+]
+```
 
 [GET]: /api/events/guest/:user_id
 
