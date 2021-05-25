@@ -3,7 +3,7 @@
 [POST] `/api/auth/register`
 
 ```javascript
-Body:                                     |            Response:
+What fields body should have:             |            What response you should get back:
 {                                         |            {
   "username": string,                     |              "user_id": 1,
   "password": string,                     |              "username": "user",
@@ -16,7 +16,7 @@ Body:                                     |            Response:
 [POST] `/api/auth/login`
 
 ```javascript
-Body:                                     |            Response:
+*What fields your req.body should have:*  |            *What response you should get back:*
 {                                         |            {
   "username": string,                     |              "message": 'Welcome Back ${username}',
   "password": string,                     |              "token": 'random generated token',
