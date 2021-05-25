@@ -126,8 +126,8 @@ const editResponse = async (event_id, user) => {
 // const editItems = async (event_id, user) => {
 //   const { item_name } = user;
 //   await db("event_items")
-//     .where({ event_id, item_name })
-//     .update(user);
+//   .where({ event_id, item_name })
+//   .update({ item_name });
 //   return items(event_id);
 // };
 
@@ -175,7 +175,7 @@ module.exports = {
   addGuest,
   editEvent,
   editResponse,
-  // editItems, <-- backburner - shame on you
+  // editItems,
   deleteEvent,
   deleteItem,
   deleteGuest
