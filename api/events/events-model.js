@@ -12,13 +12,13 @@ const getAll = async () => {
     )
     .join("users as u", "u.user_id", "e.owner_id");
 
-    for (let event of result) {
-      const guestsList = await guests(event.event_id);
-      const itemsList = await items(event.event_id);
-      event.items = itemsList;
-      event.guests = guestsList;
-    }
-    return result;
+  for (let event of result) {
+    const guestsList = await guests(event.event_id);
+    const itemsList = await items(event.event_id);
+    event.items = itemsList;
+    event.guests = guestsList;
+  }
+  return result;
 };
 
 const getById = (event_id) => {
@@ -35,28 +35,28 @@ const getById = (event_id) => {
     .where({ event_id });
 };
 
-  const getByOwnerId = async (user_id) => {
-    const result = await db("events as e")
-      .select(
-        "event_date",
-        "event_id",
-        "event_location",
-        "event_time",
-        "event_name",
-        "u.username as organizer"
-      )
-      .join("users as u", "u.user_id", "e.owner_id")
-      .where("e.owner_id", user_id);
+const getByOwnerId = async (user_id) => {
+  const result = await db("events as e")
+    .select(
+      "event_date",
+      "event_id",
+      "event_location",
+      "event_time",
+      "event_name",
+      "u.username as organizer"
+    )
+    .join("users as u", "u.user_id", "e.owner_id")
+    .where("e.owner_id", user_id);
 
-    for (let event of result) {
-      const guestsList = await guests(event.event_id);
-      const itemsList = await items(event.event_id);
-      event.items = itemsList;
-      event.guests = guestsList;
-    }
-    return result;
-  };
-  
+  for (let event of result) {
+    const guestsList = await guests(event.event_id);
+    const itemsList = await items(event.event_id);
+    event.items = itemsList;
+    event.guests = guestsList;
+  }
+  return result;
+};
+
 const getByGuestId = async (user_id) => {
   const result = await db("events as e")
     .select(
@@ -70,25 +70,21 @@ const getByGuestId = async (user_id) => {
     .join("event_guests as eg", "eg.event_id", "e.event_id")
     .join("users as u", "u.user_id", "eg.guest_id")
     .where("eg.guest_id", user_id);
-    for (let event of result) {
-      const guestsList = await guests(event.event_id);
-      const itemsList = await items(event.event_id);
-      event.items = itemsList;
-      event.guests = guestsList;
-    }
-    return result;
+  for (let event of result) {
+    const guestsList = await guests(event.event_id);
+    const itemsList = await items(event.event_id);
+    event.items = itemsList;
+    event.guests = guestsList;
+  }
+  return result;
 };
 
 const getAllEventGuests = (event_id) => {
   return db("events as e")
-  .select(
-    "e.event_name",
-    "eg.response",
-    "u.username as guest",
-  )
-  .join("event_guests as eg", "eg.event_id", "e.event_id")
-  .join("users as u", "u.user_id", "eg.guest_id")
-  .where("e.event_id", event_id);
+    .select("e.event_name", "eg.response", "u.username as guest")
+    .join("event_guests as eg", "eg.event_id", "e.event_id")
+    .join("users as u", "u.user_id", "eg.guest_id")
+    .where("e.event_id", event_id);
 };
 
 const getBy = (filter) => {
@@ -117,9 +113,7 @@ const editEvent = async (event_id, changes) => {
 
 const editResponse = async (event_id, user) => {
   const { guest_id } = user;
-  await db("event_guests")
-    .where({ event_id, guest_id })
-    .update(user);
+  await db("event_guests").where({ event_id, guest_id }).update(user);
   return guests(event_id);
 };
 // UPDATE event_items SET item_name = 'pizza' WHERE event_id=3 AND item_name='beer'
@@ -164,7 +158,7 @@ const guests = (event_id) => {
     .where("eg.event_id", event_id);
 };
 
-module.exports = { 
+module.exports = {
   getAll,
   getById,
   getBy,
@@ -178,5 +172,5 @@ module.exports = {
   // editItems,
   deleteEvent,
   deleteItem,
-  deleteGuest
+  deleteGuest,
 };

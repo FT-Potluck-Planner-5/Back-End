@@ -22,7 +22,6 @@ const restriction = (req, res, next) => {
       next({ status: 401, message: "Token authentication error" });
     } else {
       req.decoded = decoded;
-      console.log(decoded);
       next();
     }
   });
