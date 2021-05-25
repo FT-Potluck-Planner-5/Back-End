@@ -25,11 +25,11 @@ What fields your `req.body` should have vs. `response` from database you should 
 
 ```
 
-### Events:
+### All Events (should only appear if registered):
 
-[GET] `/api/events`
+#### [GET] `/api/events`
 
-##### What `response` from database you should be receiving:
+What `response` from database you should be receiving looks like:
 ```javascript
 [
 {
@@ -66,9 +66,12 @@ What fields your `req.body` should have vs. `response` from database you should 
 },
 ]
 ```
+### Single Event:
+#### [GET]: `/api/events/:user_id`
 
+What `response` from database you should be receiving looks like:
 ```javascript
-[GET]: /api/events/:user_id
+
 
 [GET]: /api/events/guest/:user_id
 
