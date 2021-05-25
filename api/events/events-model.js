@@ -1,7 +1,7 @@
 const db = require("../data/db-config");
 
-const getAll = () => {
-  return db("events as e")
+const getAll = async () => {
+  const result = await db("events as e")
     .select(
       "event_date",
       "event_id",
@@ -11,6 +11,15 @@ const getAll = () => {
       "u.username as organizer"
     )
     .join("users as u", "u.user_id", "e.owner_id");
+
+    for (let event of result) {
+      const guestsList = await guests(event.event_id);
+      const itemsList = await items(event.event_id);
+      event.items = itemsList;
+      event.guests = guestsList;
+    }
+
+    return result;
 };
 
 const getById = (event_id) => {
@@ -72,8 +81,6 @@ const getByGuestId = async (user_id) => {
       const itemsList = await items(event.event_id);
       event.items = itemsList;
       event.guests = guestsList;
-
-      console.log(guestsList, itemsList);
     }
 
     return result;
