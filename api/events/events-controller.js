@@ -27,15 +27,18 @@ const eventsController = {
   async addAGuest(req, res) {
     res.status(201).json(await Events.addGuest(req.params.event_id, req.body.guest_id));
   },
+  async addAItem(req,res) {
+    res.status(201).json(await Events.addItem(req.params.event_id,req.body));
+  },
   async editAnEvent(req, res) {
     res.status(200).json(await Events.editEvent(req.params.event_id, req.body));
   },
   async editAResponse(req, res) {
     res.status(200).json(await Events.editResponse(req.params.event_id, req.body));
   },
-  // async editTheItems(req, res) {
-  //   res.status(200).json(await Events.editItems(req.params.event_id, req.body));
-  // },
+  async editTheItems(req, res) {
+    res.status(200).json(await Events.editItems(req.params.event_id, req.body));
+  },
   async deleteAnEvent(req, res) {
     res.status(202).json(await Events.deleteEvent(req.params.event_id));
   },

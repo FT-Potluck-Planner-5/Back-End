@@ -7,7 +7,7 @@ exports.seed = function (knex) {
     },
     {
       user_id: "2f6b5812-b10f-485c-ba1b-3d6e76c52f30",
-      username: "Francis",
+      username: "Group1",
       password: "$2a$08$Z2d4vVG7HOXiZmGXBMk2zu5G.nhBTomfbiD67/w7o1FzXLCJFsbB2",
     },
     {

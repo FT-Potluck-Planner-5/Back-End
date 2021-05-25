@@ -22,13 +22,15 @@ router.post("/", restriction, bodyValidation, eventsController.addEvent);
 
 router.post("/:event_id/guests", eventsController.addAGuest);
 
+router.post("/:event_id/items", eventsController.addAItem);
+
 router.put("/:event_id", eventsController.editAnEvent);
 
 // [PUT]: /api/events/guests/:event_id - edit guests in event? // changing response if you're guest
 router.put("/:event_id/guests", eventsController.editAResponse);
 
 // [PUT]: edit items in event
-// router.put("/:event_id/items", eventsController.editTheItems); // responsibleFor
+router.put("/:event_id/items", eventsController.editTheItems); // responsibleFor
 
 // [DELETE]: EVENTS /api/events EVENT
 router.delete("/:event_id", eventsController.deleteAnEvent); // can combine the logic

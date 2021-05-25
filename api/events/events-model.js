@@ -106,6 +106,11 @@ const addGuest = async (event_id, guest_id) => {
   return guests(event_id);
 };
 
+const addItem = async (event_id, item) => {
+  await db("event_items").insert(item);
+  return items(event_id);
+};
+
 const editEvent = async (event_id, changes) => {
   await db("events").where({ event_id }).update(changes);
   return getById(event_id);
@@ -117,13 +122,13 @@ const editResponse = async (event_id, user) => {
   return guests(event_id);
 };
 // UPDATE event_items SET item_name = 'pizza' WHERE event_id=3 AND item_name='beer'
-// const editItems = async (event_id, user) => {
-//   const { item_name } = user;
-//   await db("event_items")
-//   .where({ event_id, item_name })
-//   .update({ item_name });
-//   return items(event_id);
-// };
+const editItems = async (event_id, user) => {
+  const { event_item_id, item_name } = user;
+  await db("event_items")
+    .where({ event_id, event_item_id })
+    .update({ item_name });
+  return items(event_id);
+};
 
 const deleteEvent = async (event_id) => {
   const deletedEvent = await getById(event_id);
@@ -146,7 +151,7 @@ const deleteGuest = async (event_id, guest) => {
 
 const items = (event_id) => {
   return db("event_items as ei")
-    .select("ei.item_name", "u.username as responsible_for")
+    .select("ei.item_name", "u.username as responsible_for", "ei.event_item_id")
     .leftJoin("users as u", "ei.user_id", "u.user_id")
     .where("ei.event_id", event_id);
 };
@@ -162,14 +167,15 @@ module.exports = {
   getAll,
   getById,
   getBy,
-  add,
   getByGuestId,
   getAllEventGuests,
   getByOwnerId,
+  add,
   addGuest,
+  addItem,
   editEvent,
   editResponse,
-  // editItems,
+  editItems,
   deleteEvent,
   deleteItem,
   deleteGuest,

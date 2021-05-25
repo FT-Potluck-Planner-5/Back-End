@@ -17,7 +17,6 @@ const event_items = [
   {
     event_id: 1,
     item_name: "steak",
-    user_id: "39c1471d-b4ac-4935-962d-836f01abe3d8",
   },
   {
     event_id: 1,
