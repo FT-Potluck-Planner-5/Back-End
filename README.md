@@ -5,6 +5,7 @@
 #### `[POST]:{ API_URL }/api/auth/register`
 
 What fields your `req.body` should have vs. `response` from database you should be receiving:
+
 ```javascript
 {                                         |            {
   "username": string, [required]          |              "user_id": 1,
@@ -18,6 +19,7 @@ What fields your `req.body` should have vs. `response` from database you should 
 #### `[POST]:{ API_URL }/api/auth/login`
 
 What fields your `req.body` should have vs. `response` from database you should be receiving:
+
 ```javascript
 {                                         |            {
   "username": string, [required]          |              "message": 'Welcome Back ${username}',
@@ -26,6 +28,7 @@ What fields your `req.body` should have vs. `response` from database you should 
 }                                         |            }
 
 ```
+
 # Events
 
 ### Get All Events:
@@ -33,241 +36,177 @@ What fields your `req.body` should have vs. `response` from database you should 
 #### `[GET]:{ API_URL }/api/events`
 
 What `response` from database you should be receiving looks like (if you are registered):
+
 ```javascript
 [
 {
-  event_id: integer,
-  event_name: string,
-  event_date: string,
-  event_time: string,
-  event_location: string,
-  organizer: string,
-  items = [
-          {item_name:string, responsible_for: username},
-          {item_name:string, responsible_for: username},
+  "event_id": integer,
+ " event_name": string,
+  "event_date": string,
+  "event_time": string,
+  "event_location": string,
+  "organizer": string,
+  "items" = [
+          {"item_name":string, "responsible_for": username},
+          {"item_name":string, "responsible_for": username},
           ],
-  guests = [
-            {username: string, confirmation: string},
-            {username: string, confirmation: string}
-            ]
-},
-{
-  event_id: integer,
-  event_name: string,
-  event_date: string,
-  event_time: string,
-  event_location: string,
-  organizer: uuid,
-  items = [
-            {item_name:string, responsible_for: username},
-          {item_name:string, responsible_for: username},
-          ],
-  guests = [
-            {username: string, confirmation: string},
-            {username: string, confirmation: string}
+  "guests" = [
+            {"username": string, "confirmation": string},
+            {"username": string, "confirmation": string}
             ]
 },
 ]
 ```
+
 ### Get Single Event:
 
 #### `[GET]:{ API_URL }/api/events/:event_id`
 
 What `response` from database you should be receiving looks like:
+
 ```javascript
 [
-    {
-        event_date: string,
-        event_id: integer,
-        event_location: string,
-        event_time: string,
-        event_name: string,
-        organizer: string
-    }
-]
+  {
+    event_date: string,
+    event_id: integer,
+    event_location: string,
+    event_time: string,
+    event_name: string,
+    organizer: string,
+  },
+];
 ```
+
 ### Get All Guests Within Event:
 
 #### `[GET]:{ API_URL }/api/events/:event_id/guests`
 
 What `response` from database you should be receiving looks like:
+
 ```javascript
 [
-    {
-        event_name: string,
-        response: string,
-        guest: string
-    },
-    {
-        event_name: string,
-        response: string,
-        guest: string
-    }
-]
+  {
+    event_name: string,
+    response: string,
+    guest: string,
+  },
+  {
+    event_name: string,
+    response: string,
+    guest: string,
+  },
+];
 ```
+
 ### Get All Events the User has Organized:
 
 #### `[GET]:{ API_URL }/api/events/organizer/:user_id`
+
 What `response` from database you should be receiving looks like:
+
 ```javascript
 [
-    {
-        "event_date": string,
-        "event_id": integer,
-        "event_location": string,
-        "event_time": string,
-        "event_name": string,
-        "organizer": string,
-        "items": [
-            {
-                "item_name": string,
-                "responsible_for": string
-            },
-            {
-                "item_name": string,
-                "responsible_for": string
-            }
-        ],
-        "guests": [
-            {
-                "username": string,
-                "response": string
-            },
-            {
-                "username": string,
-                "response": string
-            }
-        ]
-    },
-    {
-        "event_date": string,
-        "event_id": integer,
-        "event_location": string,
-        "event_time": string,
-        "event_name": string,
-        "organizer": string,
-        "items": [
-            {
-                "item_name": string,
-                "responsible_for": string
-            },
-            {
-                "item_name": string,
-                "responsible_for": string
-            }
-        ],
-        "guests": [
-            {
-                "username": string,
-                "response": string
-            },
-            {
-                "username": string,
-                "response": string
-            }
-        ]
-    }
-]
+  {
+    event_date: string,
+    event_id: integer,
+    event_location: string,
+    event_time: string,
+    event_name: string,
+    organizer: string,
+    items: [
+      {
+        item_name: string,
+        responsible_for: string,
+      },
+      {
+        item_name: string,
+        responsible_for: string,
+      },
+    ],
+    guests: [
+      {
+        username: string,
+        response: string,
+      },
+      {
+        username: string,
+        response: string,
+      },
+    ],
+  },
+];
 ```
 
-### Get All Events the Guest has Organized:
+### Get All Events the User is a Guest of:
 
 #### `[GET]:{ API_URL }/api/events/guest/:user_id`
+
 What `response` from database you should be receiving looks like:
+
 ```javascript
 [
-    {
-        "event_date": string,
-        "event_id": integer,
-        "event_location": string,
-        "event_time": string,
-        "event_name": string,
-        "organizer": string,
-        "items": [
-            {
-                "item_name": string,
-                "responsible_for": string
-            },
-            {
-                "item_name": string,
-                "responsible_for": string
-            }
-        ],
-        "guests": [
-            {
-                "username": string,
-                "response": string
-            },
-            {
-                "username": string,
-                "response": string
-            }
-        ]
-    },
-    {
-        "event_date": string,
-        "event_id": integer,
-        "event_location": string,
-        "event_time": string,
-        "event_name": string,
-        "organizer": string,
-        "items": [
-            {
-                "item_name": string,
-                "responsible_for": string
-            },
-            {
-                "item_name": string,
-                "responsible_for": string
-            }
-        ],
-        "guests": [
-            {
-                "username": string,
-                "response": string
-            },
-            {
-                "username": string,
-                "response": string
-            }
-        ]
-    }
-]
+  {
+    event_date: string,
+    event_id: integer,
+    event_location: string,
+    event_time: string,
+    event_name: string,
+    organizer: string,
+    items: [
+      {
+        item_name: string,
+        responsible_for: string,
+      },
+      {
+        item_name: string,
+        responsible_for: string,
+      },
+    ],
+    guests: [
+      {
+        username: string,
+        response: string,
+      },
+      {
+        username: string,
+        response: string,
+      },
+    ],
+  },
+];
 ```
 
-[GET]: /api/events/guest/:user_id
-
-[PUT]: /api/events/:event_id
-
-[PUT]: /api/events/guests/:event_id
-
+[get]: /api/events/guest/:user_id
+[put]: /api/events/:event_id
+[put]: /api/events/guests/:event_id
 
 ### What fields your `req.body` should have vs. `response` from database you should be receiving:
+
 ```javascript
 
 [POST]: /api/events
 addEvent:
 {
-  event_name: 'required',
-  event_date: 'required',
-  event_time: 'required',
-  event_location: 'required',
-  user_id: ,
-  items:[
-    {item_name: "first item not required"},
-    {item_name: "second item not required"},
-    {item_name: "third item not required"},
+  "event_name": string,
+  "event_date": string,
+  "event_time": string,
+  "event_location: string,
+  "user_id": ,
+  "items":[
+    {"item_name": string},
+    {"item_name": string},
+    {"item_name": string},
   ]
 }
 
 response:
 {
-  event_id: ,
-  event_name: ,
-  event_date: ,
-  event_time: ,
-  event_location: ,
-  user_id: ,
+  "event_id": integer,
+  "event_name": string,
+  "event_date": string,
+  "event_time": string ,
+  "event_location": string ,
+  "user_id": string,
 }
 ```
 
