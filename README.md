@@ -30,7 +30,7 @@ What fields your `req.body` should have vs. `response` from database you should 
 
 ### Get All Events:
 
-#### [GET]`/api/events`
+#### [GET] `/api/events`
 
 What `response` from database you should be receiving looks like (if you are registered):
 ```javascript
