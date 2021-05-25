@@ -19,7 +19,7 @@ router.post("/", bodyValidation, eventsController.addEvent);
 router.post("/:event_id/guests", eventsController.addAGuest);
 
 // [PUT]: /api/events/:event_id - edit specific event
-router.put("/:event_id", bodyValidation);
+router.put("/:event_id", eventsController.editAnEvent);
 
 // [PUT]: /api/events/guests/:event_id - edit guests in event? // changing response if you're guest
 router.put("/:event_id/guests", bodyValidation);

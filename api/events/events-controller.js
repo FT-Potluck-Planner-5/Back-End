@@ -26,6 +26,9 @@ const eventsController = {
   },
   async addAGuest(req, res) {
     res.status(201).json(await Events.addGuest(req.params.event_id, req.body.guest_id));
+  },
+  async editAnEvent(req, res) {
+    res.status(200).json(await Events.editEvent(req.params.event_id, req.body));
   }
 };
 

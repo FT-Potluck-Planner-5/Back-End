@@ -113,6 +113,11 @@ const addGuest = async (event_id, guest_id) => {
   return guests(event_id);
 };
 
+const editEvent = async (event_id, changes) => {
+  await db("events").where({ event_id }).update(changes);
+  return getById(event_id);
+};
+
 const items = (event_id) => {
   return db("event_items as ei")
     .select("ei.item_name", "u.username as responsible_for")
@@ -135,5 +140,6 @@ module.exports = {
   getByGuestId,
   getAllEventGuests,
   getByOwnerId,
-  addGuest
+  addGuest,
+  editEvent
 };
