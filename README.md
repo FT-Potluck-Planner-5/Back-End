@@ -6,7 +6,7 @@
 
 ### User register:
 
-#### `[POST]:{ BASE_URL }/api/auth/register`
+#### `[POST]:/api/auth/register`
 
 What fields your `req.body` should have vs. `response` from database you should be receiving:
 ```javascript
@@ -19,7 +19,7 @@ What fields your `req.body` should have vs. `response` from database you should 
 
 ### User login:
 
-#### `[POST]:{ BASE_URL }/api/auth/login`
+#### `[POST]:/api/auth/login`
 
 What fields your `req.body` should have vs. `response` from database you should be receiving:
 ```javascript
@@ -34,7 +34,7 @@ What fields your `req.body` should have vs. `response` from database you should 
 
 ### Get All Events:
 
-#### `[GET]:{ BASE_URL }/api/events`
+#### `[GET]:/api/events`
 
 What `response` from database you should be receiving looks like (if you are registered):
 ```javascript
@@ -59,7 +59,7 @@ What `response` from database you should be receiving looks like (if you are reg
 ```
 ### Get Single Event:
 
-#### `[GET]:{ BASE_URL }/api/events/:event_id`
+#### `[GET]:/api/events/:event_id`
 
 What `response` from database you should be receiving looks like:
 ```javascript
@@ -77,7 +77,7 @@ What `response` from database you should be receiving looks like:
 
 ### Get All Guests Within Event:
 
-#### `[GET]:{ BASE_URL }/api/events/:event_id/guests`
+#### `[GET]:/api/events/:event_id/guests`
 
 What `response` from database you should be receiving looks like:
 ```javascript
@@ -96,7 +96,7 @@ What `response` from database you should be receiving looks like:
 ```
 ### Get All Events the User has Organized:
 
-#### `[GET]:{ BASE_URL }/api/events/organizer/:user_id`
+#### `[GET]:/api/events/organizer/:user_id`
 What `response` from database you should be receiving looks like:
 ```javascript
 [
@@ -133,7 +133,7 @@ What `response` from database you should be receiving looks like:
 
 ### Get All Events the User is a Guest of:
 
-#### `[GET]:{ BASE_URL }/api/events/guest/:user_id`
+#### `[GET]:/api/events/guest/:user_id`
 What `response` from database you should be receiving looks like:
 ```javascript
 [
@@ -170,7 +170,7 @@ What `response` from database you should be receiving looks like:
 
 ### Add Event:
 
-#### `[POST]:{ BASE_URL }/api/events`
+#### `[POST]:/api/events`
 
 What fields your `req.body` should have vs. `response` from database you should be receiving:
 ```javascript
@@ -185,7 +185,7 @@ What fields your `req.body` should have vs. `response` from database you should 
 ```
 ### Add a Guest:
 
-#### `[POST]:{ BASE_URL }/api/events/:event_id/guests`
+#### `[POST]:/api/events/:event_id/guests`
 
 What fields your `req.body` should have vs. `response` from database you should be receiving:
 ```javascript
@@ -198,7 +198,7 @@ What fields your `req.body` should have vs. `response` from database you should 
 ```
 ### Add an Item:
 
-#### `[POST]:{ BASE_URL }/api/events/:event_id/items`
+#### `[POST]:/api/events/:event_id/items`
 
 What fields your `req.body` should have vs. `response` from database you should be receiving:
 ```javascript
@@ -211,53 +211,52 @@ What fields your `req.body` should have vs. `response` from database you should 
 
 ### Edit an Event:
 
-x#### `[PUT]:{ BASE_URL }/api/events/:event_id`
+#### `[PUT]:/api/events/:event_id`
 
 What fields your `req.body` should have vs. `response` from database you should be receiving:
 ```javascript
 {                                         |            {
-  "event_name": string, [required]        |              event_name 
-  "event_date": string, [required]        |              event_data
-  "event_time": string, [required]        |              event_time
-  "event_location": string, [required]    |              event_location
-  "user_id": string [required]            |              user
+  "event_name": string,                   |              "event_name": string, 
+  "event_date": string,                   |              "event_date": string, 
+  "event_time": string,                   |              "event_time": string,
+  "event_location": string,               |              "event_location": string,
+  "user_id": string                       |              "user_id": string
 }                                         |            }
 
 ```
-x### Edit a Guest:
+### Edit a Guest Response/RSVP:
 
-#### `[PUT]:{ BASE_URL }/api/events/:event_id/guests`
+#### `[PUT]:/api/events/:event_id/guests`
 
 What fields your `req.body` should have vs. `response` from database you should be receiving:
 ```javascript
-{                                         |            {
-  "event_name": string, [required]        |              event_name 
-  "event_date": string, [required]        |              event_data
-  "event_time": string, [required]        |              event_time
-  "event_location": string, [required]    |              event_location
-  "user_id": string [required]            |              user
-}                                         |            }
+{                                         |            [{
+  "response": string, [required]          |              "event_id": integer, 
+  "guest_id": string, [required]          |              "username": string,
+}                                         |              "response": string
+                                                       }]
 
 ```
 
-x### Delete an Event:
+### Delete an Event:
 
-#### `[DELETE]:{ BASE_URL }/api/events/:event_id`
+#### `[DELETE]:/api/events/:event_id`
 
 What fields your `req.body` should have vs. `response` from database you should be receiving:
 ```javascript
-{                                         |            {
-  "event_name": string, [required]        |              event_name 
-  "event_date": string, [required]        |              event_data
-  "event_time": string, [required]        |              event_time
-  "event_location": string, [required]    |              event_location
-  "user_id": string [required]            |              user
-}                                         |            }
+{                                         |            [{
+  "event_name": string, [required]        |              "event_id": integer, 
+  "event_date": string, [required]        |              "event_date": string,
+  "event_time": string, [required]        |              "event_time": string,
+  "event_location": string, [required]    |              "event_location": string,
+  "user_id": string [required]            |              "organizer": string,
+}                                         |              "event_name": string
+                                                       }]
 
 ```
 ### Delete an Item:
 
-#### `[DELETE]:{ BASE_URL }/api/events/:event_id/items`
+#### `[DELETE]:/api/events/:event_id/items`
 
 What fields your `req.body` should have vs. `response` from database you should be receiving:
 ```javascript
@@ -268,7 +267,7 @@ What fields your `req.body` should have vs. `response` from database you should 
 ```
 ### Delete a Guest:
 
-#### `[DELETE]:{ BASE_URL }/api/events/:event_id/guests`
+#### `[DELETE]:/api/events/:event_id/guests`
 
 What fields your `req.body` should have vs. `response` from database you should be receiving:
 ```javascript
