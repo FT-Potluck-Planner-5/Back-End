@@ -2,7 +2,7 @@
 
 ### User register:
 
-#### [POST]: `/api/auth/register`
+#### `[POST]:{ API_URL }/api/auth/register`
 
 What fields your `req.body` should have vs. `response` from database you should be receiving:
 ```javascript
