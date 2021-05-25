@@ -125,6 +125,20 @@ const editResponse = async (event_id, user) => {
     .update(user);
   return guests(event_id);
 };
+// UPDATE event_items SET item_name = 'pizza' WHERE event_id=3 AND item_name='beer'
+// const editItems = async (event_id, user) => {
+//   const { item_name } = user;
+//   await db("event_items")
+//     .where({ event_id, item_name })
+//     .update(user);
+//   return items(event_id);
+// };
+
+const deleteEvent = async (event_id) => {
+  const deletedEvent = await getById(event_id);
+  await db("events").where({ event_id }).del();
+  return deletedEvent;
+};
 
 const items = (event_id) => {
   return db("event_items as ei")
@@ -150,5 +164,7 @@ module.exports = {
   getByOwnerId,
   addGuest,
   editEvent,
-  editResponse
+  editResponse,
+  // editItems, <-- backburner - shame on you
+  deleteEvent
 };

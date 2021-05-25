@@ -24,10 +24,10 @@ router.put("/:event_id", eventsController.editAnEvent);
 router.put("/:event_id/guests", eventsController.editAResponse);
 
 // [PUT]: edit items in event
-router.put("/:event_id/items", bodyValidation); // responsibleFor
+// router.put("/:event_id/items", eventsController.editTheItems); // responsibleFor
 
 // [DELETE]: EVENTS /api/events EVENT
-router.delete("/:event_id"); // can combine the logic
+router.delete("/:event_id", eventsController.deleteAnEvent); // can combine the logic
 // [DELETE]: ITEMS /api/events/:event_id
 router.delete("/:event_id/items"); // can combine the logic
 // [DELETE]: GUESTS uninvite? GUEST -- middleware to check if restricted to organizer
