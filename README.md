@@ -86,12 +86,14 @@ What `response` from database you should be receiving looks like:
     }
 ]
 
+```
+
 [GET]: /api/events/guest/:user_id
 
 [PUT]: /api/events/:event_id
 
 [PUT]: /api/events/guests/:event_id
-```
+
 
 ### What fields your `req.body` should have vs. `response` from database you should be receiving:
 ```javascript
