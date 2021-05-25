@@ -170,7 +170,70 @@ What `response` from database you should be receiving looks like:
 ]
 ```
 
+### Get All Events the Guest has Organized:
 
+#### `[GET]:{ API_URL }/api/events/guest/:user_id`
+What `response` from database you should be receiving looks like:
+```javascript
+[
+    {
+        "event_date": string,
+        "event_id": integer,
+        "event_location": string,
+        "event_time": string,
+        "event_name": string,
+        "organizer": string,
+        "items": [
+            {
+                "item_name": string,
+                "responsible_for": string
+            },
+            {
+                "item_name": string,
+                "responsible_for": string
+            }
+        ],
+        "guests": [
+            {
+                "username": string,
+                "response": string
+            },
+            {
+                "username": string,
+                "response": string
+            }
+        ]
+    },
+    {
+        "event_date": string,
+        "event_id": integer,
+        "event_location": string,
+        "event_time": string,
+        "event_name": string,
+        "organizer": string,
+        "items": [
+            {
+                "item_name": string,
+                "responsible_for": string
+            },
+            {
+                "item_name": string,
+                "responsible_for": string
+            }
+        ],
+        "guests": [
+            {
+                "username": string,
+                "response": string
+            },
+            {
+                "username": string,
+                "response": string
+            }
+        ]
+    }
+]
+```
 
 [GET]: /api/events/guest/:user_id
 
