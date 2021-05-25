@@ -3,7 +3,7 @@
 [POST] `/api/auth/register`
 
 
-### What fields body should have:         |            ###What response you should get back:
+### What fields your `req.body` should have vs. `response` from database you should be receiving:
 ```javascript
 {                                         |            {
   "username": string,                     |              "user_id": 1,
@@ -78,6 +78,7 @@ Response:
 [PUT]: /api/events/guests/:event_id
 ```
 
+### What fields your `req.body` should have vs. `response` from database you should be receiving:
 ```javascript
 
 [POST]: /api/events
