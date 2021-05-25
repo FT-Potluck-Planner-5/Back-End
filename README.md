@@ -105,6 +105,26 @@ What `response` from database you should be receiving looks like:
     }
 ]
 ```
+### Get All Events the User has Organized:
+
+#### `[GET]:{ API_URL }/api/events/organizer/:user_id`
+What `response` from database you should be receiving looks like:
+```javascript
+[
+    {
+        event_name: string,
+        response: string,
+        guest: string
+    },
+    {
+        event_name: string,
+        response: string,
+        guest: string
+    }
+]
+```
+
+
 
 [GET]: /api/events/guest/:user_id
 
