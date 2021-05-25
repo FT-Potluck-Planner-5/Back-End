@@ -31,6 +31,6 @@ router.delete("/:event_id", eventsController.deleteAnEvent); // can combine the 
 // [DELETE]: ITEMS /api/events/:event_id
 router.delete("/:event_id/items", eventsController.deleteAnItem); // can combine the logic
 // [DELETE]: GUESTS uninvite? GUEST -- middleware to check if restricted to organizer
-router.delete("/:event_id/guests");
+router.delete("/:event_id/guests", eventsController.deleteAGuest);
 
 module.exports = router;

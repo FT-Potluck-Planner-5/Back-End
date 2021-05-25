@@ -82,12 +82,9 @@ const getByGuestId = async (user_id) => {
 const getAllEventGuests = (event_id) => {
   return db("events as e")
   .select(
-    "e.event_id",
     "e.event_name",
-    "eg.guest_id",
     "eg.response",
     "u.username as guest",
-    "ei.item_name"
   )
   .join("event_guests as eg", "eg.event_id", "e.event_id")
   .join("users as u", "u.user_id", "eg.guest_id")
@@ -146,11 +143,12 @@ const deleteItem = async (event_id, item) => {
   return items(event_id);
 };
 
-const deleteGuest = async (event_id) => {
-  const event = await getById(event_id);
-
+const deleteGuest = async (event_id, guest) => {
+  const { guest_id } = guest;
+  await db("event_guests").where({ event_id, guest_id }).del();
+  const guests = await getAllEventGuests(event_id);
+  return guests;
 };
-
 
 const items = (event_id) => {
   return db("event_items as ei")

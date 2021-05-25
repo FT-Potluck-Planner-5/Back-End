@@ -44,7 +44,7 @@ const eventsController = {
     res.status(202).json(await Events.deleteItem(req.params.event_id, req.body));
   },
   async deleteAGuest(req, res) {
-    res.status(202).json(await Events.deleteGuest(req.params.event_id));
+    res.status(202).json(await Events.deleteGuest(req.params.event_id, req.body));
   }
 };
 
