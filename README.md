@@ -1,3 +1,5 @@
+# Authentication
+
 ### User register:
 
 #### [POST] `/api/auth/register`
@@ -25,7 +27,7 @@ What fields your `req.body` should have vs. `response` from database you should 
 
 ```
 
-\
+
 ### All Events (should only appear if registered):
 
 #### [GET] `/api/events`
