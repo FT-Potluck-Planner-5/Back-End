@@ -9,7 +9,7 @@ exports.up = async function (knex) {
       .inTable("events")
       .onDelete("CASCADE");
     tbl
-      .uuid("user_id")
+      .uuid("guest_id")
       .unsigned()
       .notNullable()
       .references("user_id")
