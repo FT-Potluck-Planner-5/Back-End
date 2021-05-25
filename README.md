@@ -1,6 +1,6 @@
 ### User register:
 
-##### [POST] `/api/auth/register`
+#### [POST] `/api/auth/register`
 
 What fields your `req.body` should have vs. `response` from database you should be receiving:
 ```javascript
@@ -13,7 +13,7 @@ What fields your `req.body` should have vs. `response` from database you should 
 
 ### User login:
 
-##### [POST] `/api/auth/login`
+#### [POST] `/api/auth/login`
 
 What fields your `req.body` should have vs. `response` from database you should be receiving:
 ```javascript
