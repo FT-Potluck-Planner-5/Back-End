@@ -2,8 +2,9 @@
 
 [POST] `/api/auth/register`
 
+
+### What fields body should have:         |            ###What response you should get back:
 ```javascript
-### What fields body should have:          |            ###What response you should get back:
 {                                         |            {
   "username": string,                     |              "user_id": 1,
   "password": string,                     |              "username": "user",
