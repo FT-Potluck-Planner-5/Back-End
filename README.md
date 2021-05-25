@@ -71,11 +71,20 @@ What `response` from database you should be receiving looks like (if you are reg
 ```
 ### Get Single Event:
 
-#### [GET]: `/api/events/:user_id`
+#### [GET]: `/api/events/:event_id`
 
 What `response` from database you should be receiving looks like:
 ```javascript
-
+[
+    {
+        event_date: string,
+        event_id: integer,
+        event_location: string,
+        event_time: string,
+        event_name: string,
+        organizer: string
+    }
+]
 
 [GET]: /api/events/guest/:user_id
 
