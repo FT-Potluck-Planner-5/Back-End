@@ -11,7 +11,7 @@ server.use(cors());
 server.use("/api/auth", require("./auth/auth-router"));
 server.use("/api/events", restriction, require("./events/events-router"));
 server.use("/api/items", require("./items/items-router"));
-// random comment
+
 server.use((err, req, res, next /*eslint-disable-line */) => {
   res.status(err.status).json({
     note: "Houston, We have a problem!!!",
