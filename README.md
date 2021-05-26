@@ -179,7 +179,7 @@ What fields your `req.body` should have vs. `response` from database you should 
   "event_date": string, [required]        |              "event_id": integer,
   "event_time": string, [required]        |              "event_location": string,
   "event_location": string, [required]    |              "event_time": string,
-  "owner_id (user_id)": string [required] |              "organizer": username
+  "owner_id": string [required] |              "organizer": username
 }                                         |            }]
 
 ```
