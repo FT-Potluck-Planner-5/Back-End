@@ -92,16 +92,11 @@ const getBy = (filter) => {
 };
 
 const add = async (event) => {
-  // add item
-  // add guest / a guest joins an event
   const [{ event_id }] = await db("events").insert(event, ["event_id"]);
   return await getById(event_id);
 };
 
 const addGuest = async (event_id, guest_id) => {
-  // add to event guests table
-  // await db("event_guests").insert(event_id, ["event_id"])
-  // destructure the req.body and pull the ids
   await db("event_guests").insert({ event_id, guest_id });
   return guests(event_id);
 };
@@ -121,7 +116,7 @@ const editResponse = async (event_id, user) => {
   await db("event_guests").where({ event_id, guest_id }).update(user);
   return guests(event_id);
 };
-// UPDATE event_items SET item_name = 'pizza' WHERE event_id=3 AND item_name='beer'
+
 const editItems = async (event_id, user) => {
   const { event_item_id, item_name } = user;
   await db("event_items")
