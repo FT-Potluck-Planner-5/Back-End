@@ -1,6 +1,6 @@
 // const Events = require("./events-model");
 const jwt = require("jsonwebtoken");
-
+const db = require("../data/db-config");
 const { eventSchema } = require("../schemaValidation");
 const JWT_SECRET = require("../secrets");
 
@@ -33,4 +33,12 @@ const only = (req, res, next) => {
     next({ status: 403, message: "You are not allowed access to this data" });
 };
 
-module.exports = { bodyValidation, restriction, only };
+const checkUserId = async (req, res, next) => {
+  const check = await db("users").where("user_id", req.params.user_id);
+  if (check) {
+    next();
+  } else {
+    next({ status: 400, message: "user ID does not exist!" });
+  }
+};
+module.exports = { bodyValidation, restriction, only, checkUserId };
