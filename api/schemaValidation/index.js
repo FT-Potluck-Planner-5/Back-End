@@ -26,4 +26,15 @@ const itemSchema = yup.object({
   item_name: yup.string(),
 });
 
-module.exports = { authSchema, eventSchema, loginSchema, itemSchema };
+const guestSchema = yup.object({
+  guest_id: yup.string().required("guest_id required"),
+  response: yup.string(),
+});
+
+module.exports = {
+  authSchema,
+  eventSchema,
+  loginSchema,
+  itemSchema,
+  guestSchema,
+};

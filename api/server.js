@@ -11,7 +11,7 @@ server.use(cors());
 server.use("/api/auth", require("./auth/auth-router"));
 server.use("/api/events", restriction, require("./events/events-router"));
 
-server.use("*", (res, req) => {
+server.use("*", (res, req /*eslint-disable-line */) => {
   res.status(404).json({ message: "invalid endpoint!" });
 });
 
