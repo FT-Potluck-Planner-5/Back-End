@@ -35,11 +35,14 @@ const only = (req, res, next) => {
 };
 
 const checkUserId = async (req, res, next) => {
-  const { user_id } = req.params;
   try {
-    await Users.findBy(user_id);
-
-    next();
+    const { user_id } = req.params;
+    const check = await Users.findBy({ user_id });
+    if (!check) {
+      next({ status: 400, message: "user ID does not exist!" });
+    } else {
+      next();
+    }
   } catch (err) {
     next({ status: 400, message: "user ID does not exist!" });
   }
