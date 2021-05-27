@@ -1,6 +1,6 @@
 // const Events = require("./events-model");
 const jwt = require("jsonwebtoken");
-// const db = require("../data/db-config");
+const Events = require("./events-model");
 const Users = require("../auth/auth-model");
 const { eventSchema } = require("../schemaValidation");
 const JWT_SECRET = require("../secrets");
@@ -47,4 +47,24 @@ const checkUserId = async (req, res, next) => {
     next({ status: 400, message: "user ID does not exist!" });
   }
 };
-module.exports = { bodyValidation, restriction, only, checkUserId };
+
+const checkEventId = async (req, res, next) => {
+  try {
+    const { event_id } = req.params;
+    const check = await Events.getBy({ event_id });
+    if (!check) {
+      next({ status: 400, message: "Event ID does not exist!" });
+    } else {
+      next();
+    }
+  } catch (err) {
+    next({ status: 400, message: "Event ID does not exist!" });
+  }
+};
+module.exports = {
+  bodyValidation,
+  restriction,
+  only,
+  checkUserId,
+  checkEventId,
+};

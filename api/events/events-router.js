@@ -4,6 +4,7 @@ const {
   restriction,
   only,
   checkUserId,
+  checkEventId,
 } = require("./events-middleware");
 
 const router = require("express").Router();
@@ -25,20 +26,20 @@ router.get("/guest/:user_id", checkUserId, only, eventsController.getByGuest);
 
 router.post("/", restriction, bodyValidation, eventsController.addEvent);
 
-router.post("/:event_id/guests", eventsController.addAGuest);
+router.post("/:event_id/guests", checkEventId, eventsController.addAGuest);
 
-router.post("/:event_id/items", eventsController.addAItem);
+router.post("/:event_id/items", checkEventId, eventsController.addAItem);
 
-router.put("/:event_id", eventsController.editAnEvent);
+router.put("/:event_id", checkEventId, eventsController.editAnEvent);
 
-router.put("/:event_id/guests", eventsController.editAResponse);
+router.put("/:event_id/guests", checkEventId, eventsController.editAResponse);
 
-router.put("/:event_id/items", eventsController.editTheItems);
+router.put("/:event_id/items", checkEventId, eventsController.editTheItems);
 
-router.delete("/:event_id", eventsController.deleteAnEvent);
+router.delete("/:event_id", checkEventId, eventsController.deleteAnEvent);
 
-router.delete("/:event_id/items", eventsController.deleteAnItem);
+router.delete("/:event_id/items", checkEventId, eventsController.deleteAnItem);
 
-router.delete("/:event_id/guests", eventsController.deleteAGuest);
+router.delete("/:event_id/guests", checkEventId, eventsController.deleteAGuest);
 
 module.exports = router;
