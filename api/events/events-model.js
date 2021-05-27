@@ -144,11 +144,17 @@ const deleteGuest = async (event_id, guest) => {
   return guests;
 };
 
-const items = (event_id) => {
-  return db("event_items as ei")
+const items = async (event_id) => {
+  const result = await db("event_items as ei")
     .select("ei.item_name", "u.username as responsible_for", "ei.event_item_id")
     .leftJoin("users as u", "ei.user_id", "u.user_id")
     .where("ei.event_id", event_id);
+  // for (let object of result) {
+  //   if (object.responsible_for === null) {
+  //     object.responsible_for = "vacant";
+  //   }
+  // }
+  return result;
 };
 
 const guests = (event_id) => {

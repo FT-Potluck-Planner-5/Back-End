@@ -11,9 +11,9 @@ const router = require("express").Router();
 
 router.get("/", eventsController.getAll);
 
-router.get("/:event_id", eventsController.getById);
+router.get("/:event_id", checkEventId, eventsController.getById);
 
-router.get("/:event_id/guests", eventsController.getEventGuests);
+router.get("/:event_id/guests", checkEventId, eventsController.getEventGuests);
 
 router.get(
   "/organizer/:user_id",
