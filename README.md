@@ -245,11 +245,11 @@ What fields your `req.body` should have vs. `response` from database you should 
 What fields your `req.body` should have vs. `response` from database you should be receiving:
 ```javascript
 {                                         |            [{
-  "event_name": string, [required]        |              "event_id": integer, 
-  "event_date": string, [required]        |              "event_date": string,
-  "event_time": string, [required]        |              "event_time": string,
-  "event_location": string, [required]    |              "event_location": string,
-  "user_id": string [required]            |              "organizer": string,
+  "event_id": integer [required]          |              "event_id": integer, 
+                                          |              "event_date": string,
+                                          |              "event_time": string,
+                                          |              "event_location": string,
+                                          |              "organizer": string,
 }                                         |              "event_name": string
                                                        }]
 
