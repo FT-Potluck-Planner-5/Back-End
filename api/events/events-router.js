@@ -8,27 +8,20 @@ const {
 
 const router = require("express").Router();
 
-router.get("/", restriction, eventsController.getAll);
+router.get("/", eventsController.getAll);
 
-router.get("/:event_id", restriction, eventsController.getById);
+router.get("/:event_id", eventsController.getById);
 
 router.get("/:event_id/guests", eventsController.getEventGuests);
 
 router.get(
   "/organizer/:user_id",
-  restriction,
   checkUserId,
   only,
   eventsController.getByOwner
 );
 
-router.get(
-  "/guest/:user_id",
-  restriction,
-  checkUserId,
-  only,
-  eventsController.getByGuest
-);
+router.get("/guest/:user_id", checkUserId, only, eventsController.getByGuest);
 
 router.post("/", restriction, bodyValidation, eventsController.addEvent);
 
