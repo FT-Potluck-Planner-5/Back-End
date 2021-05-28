@@ -54,7 +54,7 @@ const checkUserId = async (req, res, next) => {
 const checkEventId = async (req, res, next) => {
   try {
     const { event_id } = req.params;
-    const check = await Events.getBy({ event_id });
+    const check = await Events.getBy({ event_id }).first();
     if (!check) {
       next({ status: 400, message: "Event ID does not exist!" });
     } else {
