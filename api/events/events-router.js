@@ -16,19 +16,39 @@ router.get("/:event_id", checkEventId, eventsController.getById);
 
 router.get("/:event_id/guests", checkEventId, eventsController.getEventGuests);
 
-router.get("/organizer/:user_id", checkUserId, only, eventsController.getByOwner);
+router.get(
+  "/organizer/:user_id",
+  checkUserId,
+  only,
+  eventsController.getByOwner
+);
 
 router.get("/guest/:user_id", checkUserId, only, eventsController.getByGuest);
 
 router.post("/", restriction, bodyValidation, eventsController.addEvent);
 
-router.post("/:event_id/guests", checkEventId, checkGuestBody, eventsController.addAGuest);
+router.post(
+  "/:event_id/guests",
+  checkEventId,
+  checkGuestBody,
+  eventsController.addAGuest
+);
 
 router.post("/:event_id/items", checkEventId, eventsController.addAItem);
 
-router.put("/:event_id", checkEventId, eventsController.editAnEvent);
+router.put(
+  "/:event_id",
+  checkEventId,
+  bodyValidation,
+  eventsController.editAnEvent
+);
 
-router.put("/:event_id/guests", checkEventId, checkGuestBody, eventsController.editAResponse);
+router.put(
+  "/:event_id/guests",
+  checkEventId,
+  checkGuestBody,
+  eventsController.editAResponse
+);
 
 router.put("/:event_id/items", checkEventId, eventsController.editTheItems);
 
