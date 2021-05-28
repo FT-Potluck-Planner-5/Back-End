@@ -24,6 +24,7 @@ const eventSchema = yup.object({
 
 const itemSchema = yup.object({
   item_name: yup.string().required("item_name required"),
+  user_id: yup.string(),
 });
 
 const guestSchema = yup.object({

@@ -2,7 +2,7 @@
 const jwt = require("jsonwebtoken");
 const Events = require("./events-model");
 const Users = require("../auth/auth-model");
-const { eventSchema, guestSchema } = require("../schemaValidation");
+const { eventSchema, guestSchema, itemSchema } = require("../schemaValidation");
 const JWT_SECRET = require("../secrets");
 
 const bodyValidation = async (req, res, next) => {
@@ -75,6 +75,16 @@ const checkGuestBody = async (req, res, next) => {
     next({ status: 400, message: err.message });
   }
 };
+const checkItemBody = async (req, res, next) => {
+  try {
+    req.body = await itemSchema.validate(req.body, {
+      stripUnknown: true,
+    });
+    next();
+  } catch (err) {
+    next({ status: 400, message: err.message });
+  }
+};
 module.exports = {
   bodyValidation,
   restriction,
@@ -82,4 +92,5 @@ module.exports = {
   checkUserId,
   checkEventId,
   checkGuestBody,
+  checkItemBody,
 };
