@@ -15,7 +15,6 @@ server.use("*", (res, req /*eslint-disable-line */) => {
   res.status(404).json({ message: "invalid endpoint!" });
 });
 
-// useless comment
 server.use((err, req, res, next /*eslint-disable-line */) => {
   res.status(err.status).json({
     note: "Houston, We have a problem!!!",
