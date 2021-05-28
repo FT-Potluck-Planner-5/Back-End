@@ -16,12 +16,7 @@ router.get("/:event_id", checkEventId, eventsController.getById);
 
 router.get("/:event_id/guests", checkEventId, eventsController.getEventGuests);
 
-router.get(
-  "/organizer/:user_id",
-  checkUserId,
-  only,
-  eventsController.getByOwner
-);
+router.get("/organizer/:user_id", checkUserId, only, eventsController.getByOwner);
 
 router.get("/guest/:user_id", checkUserId, only, eventsController.getByGuest);
 

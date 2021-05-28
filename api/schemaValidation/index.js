@@ -15,15 +15,15 @@ const loginSchema = yup.object({
 });
 
 const eventSchema = yup.object({
-  event_name: yup.string(),
-  event_date: yup.string(),
-  event_time: yup.string(),
-  event_location: yup.string(),
-  owner_id: yup.string(),
+  event_name: yup.string().required("missing event name"),
+  event_date: yup.string().required("missing event date"),
+  event_time: yup.string().required("missing event time"),
+  event_location: yup.string().required("missing event location"),
+  owner_id: yup.string().required("missing owner_id"),
 });
 
 const itemSchema = yup.object({
-  item_name: yup.string(),
+  item_name: yup.string().required("item_name required"),
 });
 
 const guestSchema = yup.object({
